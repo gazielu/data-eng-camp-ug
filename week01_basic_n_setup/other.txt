@@ -1,0 +1,53 @@
+
+    URL = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
+
+
+    green_text
+    URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2021-01.csv.gz"
+
+    
+     
+    python ingest_data.py \
+        --user=root \
+        --password=root \
+        --host=localhost \
+        --port=5432 \
+        --db=ny_taxi \
+        --table_name=green_taxi_trips \
+        --url=${URL}
+
+    python ingest_data_zoomcamp.py \
+        --user=root \
+        --password=root \
+        --host=localhost \
+        --port=5432 \
+        --db=ny_taxi \
+        --table_name=yellow_taxi_trips \
+        --url=${URL}
+
+    docker build taxi_ingest:v001 .
+
+    docker run -it \
+    --network=pg-network \
+    taxi_ingest:v001 \
+    --user=root \
+    --password=root \
+    --host=pg-database \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=green_taxi_trips \
+    --url=${URL}
+
+
+   week01_basic_n_setup_default
+
+    docker run -it \
+    --network=week01_basic_n_setup_default \
+    taxi_ingest:v001 \
+    --user=root \
+    --password=root \
+    --host=pg-database \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=green_taxi_trips \
+    --url=${URL}
