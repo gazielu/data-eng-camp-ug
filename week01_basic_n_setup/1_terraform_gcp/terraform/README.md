@@ -1,6 +1,7 @@
 
 ### Execution
-firs
+use windows
+run on power shell
 
 
 ```shell
