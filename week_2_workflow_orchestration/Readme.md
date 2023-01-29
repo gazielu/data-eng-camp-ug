@@ -24,7 +24,50 @@ pip install -r requirements.txt
 In a conda environment, install all package dependencies with 
 
 ```bash
-conda install --file requirements.txt
+
+conda install -n prefect-env --file requirements.txt # after 
+conda activate prefect-env
+```
+
+## post conda installation  
+we will start by running simple python commend to see if its work 
+
+
+## running the first phase on ingest_data with no flw at all
+```python
+python ingest_data.py \
+        --user=root \
+        --password=root \
+        --host=localhost \
+        --port=5432 \
+        --db=ny_taxi \
+        --table_name=yellow_taxi_trips \
+        --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2020-01.csv.gz"
+```
+args paramters that we receive from the python running commend
+
+```python
+ parser = argparse.ArgumentParser(description='Ingest CSV data to Postgres')
+
+    parser.add_argument('--user', required=True, help='user name for postgres')
+    parser.add_argument('--password', required=True, help='password for postgres')
+    parser.add_argument('--host', required=True, help='host for postgres')
+    parser.add_argument('--port', required=True, help='port for postgres')
+    parser.add_argument('--db', required=True, help='database name for postgres')
+    parser.add_argument('--table_name', required=True, help='name of the table where we will write the results to')
+    parser.add_argument('--url', required=True, help='url of the csv file')
+
+    args = parser.parse_args()
+
+    main(args)
+```
+
+its  euilvelnt to if we use hard coded paramters:
+```python
+user = "postgres"
+...
+port = "5432"
+main(user, url..) # main as a function that ingest data
 ```
 ## Start the Prefect Orion server locally
 
