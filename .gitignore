@@ -1,4 +1,3 @@
-
 .DS_Store
 .idea
 *.tfstate
@@ -11,8 +10,6 @@
 **__pycache__/
 .history
 **/ny_taxi_postgres_data/*
-**/week_2_workflow_orchestration/prefect_env/*
-serving_dir
 *.csv
 .ipynb_checkpoints/
 !week_6_stream_processing/avro_example/data/rides.csv
